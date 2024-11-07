@@ -6,6 +6,10 @@ export default {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      Rancho: ["Rancho", "cursive"],
+      Railway: ["Raleway", 'serif'],
+    },
   },
   plugins: [],
 }

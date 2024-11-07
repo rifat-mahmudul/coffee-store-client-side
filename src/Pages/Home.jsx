@@ -1,8 +1,9 @@
+import AddCoffee from "./AddCoffee"
 
 const Home = () => {
     return (
         <div>
-            <h1>This is Home Components</h1>
+            <AddCoffee></AddCoffee>
         </div>
     )
 }
