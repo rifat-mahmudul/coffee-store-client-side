@@ -1,10 +1,12 @@
-import AddCoffee from "./AddCoffee"
+import Banner from "../components/Banner"
+import Coffees from "../components/Coffees"
 
 const Home = () => {
     return (
-        <div>
-            <AddCoffee></AddCoffee>
-        </div>
+        <section>
+            <Banner></Banner>
+            <Coffees></Coffees>
+        </section>
     )
 }
 

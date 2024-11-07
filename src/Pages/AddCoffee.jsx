@@ -1,5 +1,6 @@
 import { IoArrowBack } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 const AddCoffee = () => {
 
@@ -11,8 +12,9 @@ const AddCoffee = () => {
         const category = form.category.value;
         const chef = form.chef.value;
         const taste = form.taste.value;
-        const details = form.details.value;
-        const newCoffee = {name, supplier, category, chef, taste, details,};
+        const price = form.price.value;
+        const photoURL = form.photoURL.value;
+        const newCoffee = {name, supplier, category, chef, taste, price, photoURL};
         console.log(newCoffee);
 
 
@@ -27,6 +29,14 @@ const AddCoffee = () => {
         .then(res => res.json())
         .then(data => {
             console.log(data);
+            if(data.insertedId){
+                Swal.fire({
+                    icon: "success",
+                    title: "Successfully Added coffee",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
         })
     }
 
@@ -74,8 +84,8 @@ const AddCoffee = () => {
                             </div>
                             
                             <div>
-                                <h3 className="font-semibold mb-3 mt-4">Details : </h3>
-                                <input className="w-full p-3 rounded-lg" type="text" name="details" id="details" placeholder="Enter coffee Details" />
+                                <h3 className="font-semibold mb-3 mt-4">price : </h3>
+                                <input className="w-full p-3 rounded-lg" type="text" name="price" id="price" placeholder="Enter coffee Details" />
                             </div>
 
                         </div>
