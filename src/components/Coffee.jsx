@@ -9,7 +9,7 @@ const Coffee = ({coffee}) => {
 
     const {_id, name, chef, photoURL, price} = coffee;
 
-    const handleDelete = id => {
+    const handleDelete = _id => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
