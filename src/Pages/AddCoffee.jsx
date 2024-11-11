@@ -1,6 +1,5 @@
 import { IoArrowBack } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import Swal from 'sweetalert2'
 
 const AddCoffee = () => {
 
@@ -14,30 +13,18 @@ const AddCoffee = () => {
         const taste = form.taste.value;
         const price = form.price.value;
         const photoURL = form.photoURL.value;
-        const newCoffee = {name, supplier, category, chef, taste, price, photoURL};
-        console.log(newCoffee);
 
+        const coffeeInfo = {
+            name,
+            supplier,
+            category,
+            chef,
+            taste,
+            price,
+            photoURL
+        }
 
-        //post coffee in server
-        fetch('http://localhost:5000/coffee',{
-            method : 'POST',
-            headers : {
-                "content-type" : "application/json"
-            },
-            body : JSON.stringify(newCoffee)
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            if(data.insertedId){
-                Swal.fire({
-                    icon: "success",
-                    title: "Successfully Added coffee",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            }
-        })
+        console.log(coffeeInfo);
     }
 
     return (
