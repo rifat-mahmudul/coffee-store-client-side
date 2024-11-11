@@ -1,10 +1,57 @@
 import { IoArrowBack } from "react-icons/io5"
-import { Link, useLoaderData } from "react-router-dom"
+import { Link, useLoaderData, useNavigate } from "react-router-dom"
+import Swal from 'sweetalert2'
 
 const UpdateCoffee = () => {
 
     const coffee = useLoaderData();
-    const {photoURL, chef, name, price, taste, category, supplier } = coffee;
+    const {photoURL, chef, name, price, taste, category, supplier, _id } = coffee;
+    const navigate = useNavigate();
+
+    const handleUpdateCoffee = e => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const supplier = form.supplier.value;
+        const category = form.category.value;
+        const chef = form.chef.value;
+        const taste = form.taste.value;
+        const price = form.price.value;
+        const photoURL = form.photoURL.value;
+
+        const updateCoffeeInfo = {
+            name,
+            supplier,
+            category,
+            chef,
+            taste,
+            price,
+            photoURL
+        }
+
+
+        fetch(`http://localhost:5000/coffees/${_id}`,{
+            method : "PUT",
+            headers : {
+                "content-type" : "application/json"
+            },
+            body : JSON.stringify(updateCoffeeInfo)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if (data.modifiedCount > 0) {
+                Swal.fire({
+                    icon: "success",
+                    title: "Coffee updated successfully!",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/')
+            }
+            form.reset();
+        })
+    }
 
     return (
         <div className="max-w-[90%] xl:max-w-[1000px] mx-auto mb-16 font-Railway">
@@ -15,7 +62,7 @@ const UpdateCoffee = () => {
                 <h1 className="text-center font-Rancho text-3xl font-bold">Update Existing Coffee Details</h1>
                 <p className="text-center sm:max-w-3xl mx-auto mt-3 text-gray-600">It is a long established fact that a reader will be distraceted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here.</p>
 
-                <form className="mt-8">
+                <form className="mt-8" onSubmit={handleUpdateCoffee}>
 
                     <div className="sm:flex items-center justify-between font-Railway">
                         <div className="sm:w-[49%]">
