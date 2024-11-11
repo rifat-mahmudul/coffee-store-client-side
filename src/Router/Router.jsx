@@ -4,6 +4,7 @@ import {
 import Root from "../Layouts/Root";
 import Home from "../Pages/Home";
 import AddCoffee from "../Pages/AddCoffee";
+import UpdateCoffee from "../Pages/UpdateCoffee";
 
 export const router = createBrowserRouter([
     {
@@ -17,6 +18,11 @@ export const router = createBrowserRouter([
             {
                 path : '/addCoffee',
                 element : <AddCoffee></AddCoffee>
+            },
+            {
+                path : '/updateCoffee/:id',
+                element : <UpdateCoffee></UpdateCoffee>,
+                loader : ({params}) => fetch(`http://localhost:5000/coffees/${params.id}`)
             }
         ]
     },

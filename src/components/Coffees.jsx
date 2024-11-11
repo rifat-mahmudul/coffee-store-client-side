@@ -29,7 +29,7 @@ const Coffees = () => {
 
 
             <div className="max-w-[90%] sm:max-w-[1440px] sm:px-28 mx-auto mt-8 grid grid-cols-1 sm:grid-cols-2 gap-8">
-                {coffees.map(coffee => <Coffee key={coffee._id} coffee={coffee}></Coffee>)}
+                {coffees.map(coffee => <Coffee key={coffee._id} coffees={coffees} setCoffees={setCoffees} coffee={coffee}></Coffee>)}
             </div>
         </section>
     )
