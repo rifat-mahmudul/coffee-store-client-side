@@ -1,10 +1,21 @@
 import { Link } from "react-router-dom"
 import { BsFillCupHotFill } from "react-icons/bs";
 import './compo.css'
+import { useEffect, useState } from "react";
+import Coffee from "./Coffee";
 
 
 const Coffees = () => {
 
+    const [coffees, setCoffees] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/coffees')
+        .then(res => res.json())
+        .then(data => {
+            setCoffees(data);
+        })
+    }, [])
 
     return (
         <section className="mt-16 mb-16 font-Railway bg-img min-h-[100vh]">
@@ -18,7 +29,7 @@ const Coffees = () => {
 
 
             <div className="max-w-[90%] sm:max-w-[1440px] sm:px-28 mx-auto mt-8 grid grid-cols-1 sm:grid-cols-2 gap-8">
-                
+                {coffees.map(coffee => <Coffee key={coffee._id} coffee={coffee}></Coffee>)}
             </div>
         </section>
     )

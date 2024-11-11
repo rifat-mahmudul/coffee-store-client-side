@@ -4,20 +4,21 @@ import { FaPen } from "react-icons/fa6";
 import { MdDeleteForever } from "react-icons/md";
 
 
-const Coffee = () => {
+const Coffee = ({coffee}) => {
 
+    const {photoURL, chef, name, price } = coffee;
 
     return (
         <div className="bg-[#f4f3f097] p-4 rounded-lg font-Railway lg:flex justify-between items-center cursor-pointer hover:border-2 hover:border-[#382828] transition hover:scale-105 shadow-lg">
             
             <div>
-                <img className="h-[200px]" src="" alt="" />
+                <img className="h-[200px]" src={photoURL} alt="" />
             </div>
 
             <div>
                 <p><span className="font-semibold">Name : </span>{name}</p>
-                <p><span className="font-semibold mt-2 mb-2">Chef : </span>chef</p>
-                <p><span className="font-semibold">Price : </span>30tk</p>
+                <p><span className="font-semibold mt-2 mb-2">Chef : </span>{chef}</p>
+                <p><span className="font-semibold">Price : </span>{price}</p>
             </div>
 
             <div className="flex items-center gap-3 lg:block">
